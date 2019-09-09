@@ -1,19 +1,40 @@
-import sys, math
+import sys
+import math
+import argparse
 
-file_name = sys.argv[1]
-col_num = int(sys.argv[2])
+def Main():
+    print("testing")
+    parser = argparse.ArgumentParser(
+                description='Open a file, generate stats of a given column',
+                prog='bay')
 
-f = open(file_name, 'r')
+    parser.add_argument('-i' #input file, from user
+                        '--input_file',
+                        type=str,
+                        help="File Name: Tab Separated Files",
+                        required=True)
 
-V = []
+    parser.add_argument('-c' #desired column, from user
+                        '--column_number',
+                        type=int,
+                        help='Column number: which column would you like to read?',
+                        required=True)
 
-for l in f:
-    A = [int(x) for x in l.split()]
-    V.append(A[col_num])
+    args = parser.parse_args()
+    file_name = args.input_file
+    col_num = args.column_number
 
-mean = sum(V)/len(V)
+    f = open(file_name, 'r')
 
-stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    V = []
 
-print('mean:', mean)
-print('stdev:', stdev)
+    for l in f:
+        A = [int(x) for x in l.split()]
+        V.append(A[col_num])
+
+    mean = sum(V)/len(V)
+
+    stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+
+    print('mean:', mean)
+    print('stdev:', stdev)
