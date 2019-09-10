@@ -24,7 +24,12 @@ def main():
     file_name = args.input_file
     col_num = args.column_number
 
-    f = open(file_name, 'r')
+    try:
+        f = open(file_name, 'r')
+    except FileNotFoundError:
+        print("File does not exist, or you do not have correct permissions.")
+        sys.exit(1)
+
     mean = "N/A"
     stdev = "N/A"
     V = []
