@@ -9,12 +9,15 @@ test -e ssshtest || wget -q https://raw.githubusercontent.com/ryanlayer/ssshtest
 run test_exit_code python get_column_stats.py -i data.txt -c 1
 assert_exit_code 0
 
-
 run test_style_style pycodestyle style.py
 assert_exit_code 0
 
 run test_style_get_column_stats pycodestyle get_column_stats.py
 assert_exit_code 0
+
+
+
+
 
 
 # Second Test File
@@ -25,6 +28,10 @@ done )> data.txt
 
 run test_rand_values python get_column_stats.py --input_file data.txt --column_num 2
 assert_exit_code 0
+
+
+
+
 
 # Third Test File
 A=4
