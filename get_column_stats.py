@@ -30,12 +30,13 @@ def mean(V):
         print(good_vals)
         print(bad_mn_vals)
         raise ValueError("Can't give mean of zero values!")
-    
+
     mn = sum(good_vals)/len(good_vals)
     if len(bad_mn_vals) > 0:
         print("The following values were non-numerical and excluded:")
         print(bad_mn_vals)
     return mn
+
 
 def stdev(V):
     """
