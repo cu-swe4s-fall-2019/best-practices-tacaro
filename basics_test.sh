@@ -37,7 +37,7 @@ assert_exit_code 0
 A=4
 B="asdf"
 (for i in `seq 1 100`; do 
-    echo "$RANDOM\t$A\t$B\t$A\t$B\t$A\t$RANDOM";
+    echo -e "$RANDOM\t$A\t$B\t$A\t$B\t$A\t$RANDOM";
 done )> data.txt
 
 run test_strings_present python get_column_stats.py --input_file data.txt --column_num 2
