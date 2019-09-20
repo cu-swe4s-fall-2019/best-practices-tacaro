@@ -17,6 +17,9 @@ get_column_stats.py takes two arguments:
 
 If a value in the user specified column is not an integer, the program will move it to a list _bad_vals_, which will be printed at the end of the calculation for user reference.
 
+## basics_test.py (vew with v2.0)
+Implements python unittests for the mean and standard deviation methods contained within get_column_stats.py
+
 ## basics_test.sh
 basics_test.sh tests the integrity of our code. First, it asks whether both style.py and get_column_stats.py conform to PEP8 style guides by using pycodestyle.
 
@@ -37,5 +40,9 @@ The basics_test.sh shell script uses pycodestyle to check that the python code u
 `pip install pycodestyle
 pip install --upgrade pycodestyle
 pip uninstall pycodestyle`
+
+As of v2.0, the basics_test.sh shell script uses Stupid Simple baSH Testing. To install, enter the following into the command line:
+`test -e ssshtest || wget -qhttps://raw.githubusercontent.com/ryanlayer/ssshtest/master/ssshtest 
+. ssshtest`
 
 get_column_stats.py does not require any installation, as it uses built-in python libraries _sys_, _math_, and _argparse_.

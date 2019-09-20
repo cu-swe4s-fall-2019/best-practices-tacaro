@@ -1,6 +1,7 @@
 import sys
 import math
 import argparse
+import unittest
 
 
 def mean(V):
@@ -16,8 +17,25 @@ def mean(V):
     m
         The arithmetic mean of array V
     """
-    sum(V)/len(V)
-    return m
+    good_vals = []
+    bad_mn_vals = []
+    for i in V:
+        try:
+            good_vals.append(int(i))
+        except ValueError:
+            bad_mn_vals.append(i)
+            continue
+
+    if len(good_vals) < 1:
+        print(good_vals)
+        print(bad_mn_vals)
+        raise ValueError("Can't give mean of zero values!")
+
+    mn = sum(good_vals)/len(good_vals)
+    if len(bad_mn_vals) > 0:
+        print("The following values were non-numerical and excluded:")
+        print(bad_mn_vals)
+    return mn
 
 
 def stdev(V):
@@ -34,7 +52,9 @@ def stdev(V):
         Standard deviation of the values in V
 
     """
-    math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    if len(V) < 2:
+        raise ValueError("Standard Deviation requires at least 2 data points!")
+    std = math.sqrt(sum([(mean(V)-x)**2 for x in V]) / len(V))
     return std
 
 
@@ -65,10 +85,10 @@ def main():
         print("File does not exist, or you do not have correct permissions.")
         sys.exit(1)  # sets the exit code!
 
-    mean = "N/A"  # setting N/A to default value
-    stdev = "N/A"
     V = []
     bad_vals = []
+    reported_mean = None
+    reported_stdev = None
 
     for l in f:
         try:
@@ -77,19 +97,23 @@ def main():
         except ValueError:
             bad_vals.append(A[col_num])  # we're dumping bad vals into a list
             continue
-        print(V)
 
     if len(V) != 0:
-        mean = sum(V)/len(V)
-        stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+        if all(isinstance(i, int) for i in V):
+            print(V)
+            reported_mean = mean(V)
+            reported_stdev = stdev(V)
+        else:
+            print("Something isn't an integer here!")
     else:
         print("No workable values!")
+
     if len(bad_vals) != 0:
         print("The following values are not integers and were excluded:")
         print(bad_vals)
 
-    print('mean:', mean)
-    print('stdev:', stdev)
+    print('mean:', reported_mean)
+    print('stdev:', reported_stdev)
 
 
 if __name__ == "__main__":
