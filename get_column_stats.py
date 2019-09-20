@@ -63,7 +63,8 @@ def stdev(V):
 
     if len(V) < 2:
         raise ValueError("Standard Deviation requires at least 2 data points!")
-    std = math.sqrt(sum([(mean(good_vals)-x)**2 for x in good_vals]) / len(good_vals))
+    std = math.sqrt(sum([(mean(good_vals)-x)**2 for x in good_vals]) /
+                    len(good_vals))
     return std
 
 
