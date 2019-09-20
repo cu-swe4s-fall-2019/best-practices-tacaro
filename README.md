@@ -18,20 +18,12 @@ get_column_stats.py takes two arguments:
 If a value in the user specified column is not an integer, the program will move it to a list _bad_vals_, which will be printed at the end of the calculation for user reference.
 
 ## basics_test.py (vew with v2.0)
-Implements python unittests for the mean and standard deviation methods contained within get_column_stats.py
+Implements python unittests for the mean and standard deviation methods contained within get_column_stats.py. The script checks whether the mean() and stdev() methods can handle a variety of inputs, and whether they handle exceptions correctly, instead of passing them to the user.
 
 ## basics_test.sh
 basics_test.sh tests the integrity of our code. First, it asks whether both style.py and get_column_stats.py conform to PEP8 style guides by using pycodestyle.
 
-After completing this (and printing any pycodestyle errors that may arise) the script creates tests for our column_stats.py program. 
-
-basics_test.sh creates Four tests for our get_column_stats. 
-Three of these tests are files with arbitrary values:
-* 6 columns, with random integers and the string "-e"
-* 6 columns, with integer "1" and the string "-e"
-* 7 columns, with alternating integers and strings
-
-The last test is a nonexistent file "nonexistentfile.txt".
+After completing this (and printing any pycodestyle errors that may arise) the script creates tests for our column_stats.py program.
 
 The script executes get_column_stats.py with a variety of column numbers to make sure that the program can still compute column statistics, even when non-integer values are present in the user-defined column. The final test ensures that the program handles the FileNotFoundError exception.
 
