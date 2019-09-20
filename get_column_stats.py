@@ -17,17 +17,25 @@ def mean(V):
     m
         The arithmetic mean of array V
     """
+    good_vals = []
+    bad_mn_vals = []
     for i in V:
         try:
-            i += 0
-        except TypeError:
-            raise ValueError("An element in your data is non-numerical")
+            good_vals.append(int(i))
+        except ValueError:
+            bad_mn_vals.append(i)
+            continue
 
-    if len(V) < 1:
+    if len(good_vals) < 1:
+        print(good_vals)
+        print(bad_mn_vals)
         raise ValueError("Can't give mean of zero values!")
-    m = sum(V)/len(V)
-    return m
-
+    
+    mn = sum(good_vals)/len(good_vals)
+    if len(bad_mn_vals) > 0:
+        print("The following values were non-numerical and excluded:")
+        print(bad_mn_vals)
+    return mn
 
 def stdev(V):
     """
@@ -98,7 +106,7 @@ def main():
             print("Something isn't an integer here!")
     else:
         print("No workable values!")
-    
+
     if len(bad_vals) != 0:
         print("The following values are not integers and were excluded:")
         print(bad_vals)
