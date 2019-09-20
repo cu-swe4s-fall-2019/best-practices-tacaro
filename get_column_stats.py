@@ -52,9 +52,19 @@ def stdev(V):
         Standard deviation of the values in V
 
     """
+    good_vals = []
+    bad_mn_vals = []
+    for i in V:
+        try:
+            good_vals.append(int(i))
+        except ValueError:
+            bad_mn_vals.append(i)
+            continue
+
     if len(V) < 2:
         raise ValueError("Standard Deviation requires at least 2 data points!")
-    std = math.sqrt(sum([(mean(V)-x)**2 for x in V]) / len(V))
+    std = math.sqrt(sum([(mean(good_vals)-x)**2 for x in good_vals]) /
+                    len(good_vals))
     return std
 
 
@@ -95,6 +105,7 @@ def main():
             A = [x for x in l.split()]  # splits rows into individual elements
             V.append(int(A[col_num]))
         except ValueError:
+            print(col_num)
             bad_vals.append(A[col_num])  # we're dumping bad vals into a list
             continue
 
